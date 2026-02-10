@@ -1,35 +1,32 @@
-name: Deploy Vue App
+name: Deploy Vue to Ubuntu
 
 on:
   push:
     branches:
-      - main
+      - prod
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/actions-setup@v4
+      - uses: pnpm/actions-setup@v4
         with:
           version: 10
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
 
-      - name: Install dependencies & build
+      - name: Install & Build
         run: |
           pnpm install --no-frozen-lockfile
           pnpm build
 
-      - name: Upload dist to server
+      - name: Deploy
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
