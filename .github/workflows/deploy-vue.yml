@@ -1,5 +1,4 @@
 name: deploy vue
-
 on:
   push:
     branches:
@@ -10,31 +9,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the code
+      - name: check out the code to build server
         uses: actions/checkout@v4
-
       - name: Setup pnpm
         uses: pnpm/actions-setup@v4
         with:
           version: 10
           run_install: false
-
-      - name: Use Node.js 20.x
+      - name: Use Node.js 20 .x
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
+          cache: 'pnpm'
 
-      - name: Build the code
+      - name: build the code
         run: |
           pnpm install --no-frozen-lockfile
           pnpm build
 
-      - name: Copy files to server
+      - name: copy files to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
-          username: ubuntu
+          username: ${{secrets.SSH_USER_NAME}}
           key: ${{ secrets.SSH_KEY }}
-          source: "dist/"
+          source: "./dist/*"
           target: "/var/www/html/"
+          strip_components: 1
