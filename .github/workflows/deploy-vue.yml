@@ -25,9 +25,15 @@ jobs:
       - name: copy file to server
         uses: appleboy/scp-action@master
         with:
+<<<<<<< HEAD
           host: ${{secrets.HOST}}
           username: ${{secrets.SSH_USER_NAME}}
           key: ${{secrets.SSH_KEY}}
+=======
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+>>>>>>> cccf6cd (แแแ)
           source: "./dist/*"
           target: "/var/www/html"
           strip_components: 1
