@@ -10,7 +10,6 @@ on:
 
 env:
   CI: true
-
 jobs:
   lint:
     name: Lint
