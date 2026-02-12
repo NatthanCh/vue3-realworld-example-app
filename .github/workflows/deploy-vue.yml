@@ -31,7 +31,7 @@ jobs:
           key: ${{secrets.SSH_KEY}}
 =======
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
+          username: ${{ secrets.USER_NAME }}
           key: ${{ secrets.SSH_KEY }}
 >>>>>>> cccf6cd (แแแ)
           source: "./dist/*"
