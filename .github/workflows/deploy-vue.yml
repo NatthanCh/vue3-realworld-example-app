@@ -3,7 +3,7 @@ name: deploy vue
 on:
   push:
     branches:
-      - main
+      - prod
 
 jobs:
   deploy-app:
@@ -38,4 +38,3 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "dist/"
           target: "/var/www/html/"
-          
