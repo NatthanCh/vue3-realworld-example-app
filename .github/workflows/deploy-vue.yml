@@ -30,7 +30,7 @@ jobs:
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.SSH_USER_NAME }}
+          username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           source: 'dist/*'
           target: /var/www/html
